@@ -1,6 +1,7 @@
 package daw.imad;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /*
@@ -190,7 +191,7 @@ public class TarjetaCredito {
     @Override
     public String toString() {
         return "\t" + TITULAR + "\t" + ENTIDAD_EMISORA + "\n"
-                + "\t" + FECHA_CADUCIDAD + " caducidad\t " + limiteTarjeta + "\n"
+                + "\t" + FECHA_CADUCIDAD.format(DateTimeFormatter.ofPattern("MM/yy"))+ " caducidad\t " + limiteTarjeta + "\n"
                 + "\t" + NUMERO;
     }
 
