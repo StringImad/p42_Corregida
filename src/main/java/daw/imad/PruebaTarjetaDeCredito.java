@@ -40,6 +40,7 @@ public class PruebaTarjetaDeCredito {
         t2.pagar();
         System.out.println(t2);
         t3.pagar();
+        System.out.println("-----------Tarjeta copia-------------");
         System.out.println(t3);
     }
 }

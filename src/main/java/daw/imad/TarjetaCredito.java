@@ -1,6 +1,5 @@
 package daw.imad;
 
-
 import java.time.YearMonth;
 import java.util.Scanner;
 
@@ -50,7 +49,7 @@ public class TarjetaCredito {
             this.limiteTarjeta = 2000;
         }
         if (compruebaIntroduccion4Caracteres(pin)) {
-        this.pin = pin;
+            this.pin = pin;
         } else {
             this.pin = "1234";
         }
@@ -65,7 +64,7 @@ public class TarjetaCredito {
                 contador++;
             }
         }
-        return contador==16;
+        return contador == 16;
     }
 
     private static boolean compruebaIntroduccion4Caracteres(String numero) {
@@ -75,8 +74,9 @@ public class TarjetaCredito {
                 contador++;
             }
         }
-        return contador==4;
+        return contador == 4;
     }
+
     public void activarTarjeta() {
         this.estadoTarjeta = true;
     }
@@ -102,9 +102,12 @@ public class TarjetaCredito {
 
                 if (cantidadAPagar <= this.limiteTarjeta) {
                     if (estadoTarjeta) {
-                        if ((FECHA_CADUCIDAD.isAfter(YearMonth.now()))) {
+                        if (YearMonth.now().isAfter(FECHA_CADUCIDAD)) {
                             System.out.println("Compra realizada con  exito");
                             this.limiteTarjeta -= cantidadAPagar;
+                            if (this.limiteTarjeta <= 0) {
+                                anularTarjeta();
+                            }
                         } else {
                             System.out.println("La tarjeta esta caducada");
                             break;
@@ -132,7 +135,7 @@ public class TarjetaCredito {
 
 //método de clase, llamado copiar, que reciba un objeto de tipo TarjetaCredito a copiar y devuelva un nuevo objeto con la copia del mismo.
     public static TarjetaCredito copiar(TarjetaCredito recibida) {
-        TarjetaCredito copia = new TarjetaCredito(recibida.getEntidadEmisora(), recibida.getNumero(),recibida.getFechaCaducidad(), recibida.getTitular(), recibida.getLimiteTarjeta(), recibida.getPin());
+        TarjetaCredito copia = new TarjetaCredito(recibida.getEntidadEmisora(), recibida.getNumero(), recibida.getFechaCaducidad(), recibida.getTitular(), recibida.getLimiteTarjeta(), recibida.getPin());
         return copia;
     }
 
